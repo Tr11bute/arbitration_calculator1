@@ -1,0 +1,67 @@
+body { 
+    font-family: Arial, sans-serif; 
+    background-image: url("body_background.png");
+}
+
+.container { 
+    max-width: 400px; 
+    margin: 50px auto; 
+    padding: 20px;
+}
+
+/*Верхняя надпись*/
+#heading_calculator{
+    text-align: center;
+    color:#4CAF50; ;
+    font-size: 30px;
+    margin-bottom: 30px;
+    font-weight:bold;
+}
+
+/*Поле первый кэф*/
+#odd1{
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/*Поле второй кэф*/
+#odd2{
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/*Поле Суммы ставки*/
+#stake{
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#calculate_button{
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#result{
+    color: white;
+    
+}
+
+input { 
+    width: 100%; 
+    padding: 10px; 
+    margin: 10px 0; 
+}
+
+button { 
+    width: 100%; 
+    padding: 10px; 
+    background-color: #4CAF50; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+
+button:hover { 
+    background-color: #45a049; 
+}
+

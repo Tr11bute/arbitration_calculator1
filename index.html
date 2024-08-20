@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Калькулятор Ставок</title>
+</head>
+<body>
+    <div class="container">
+        <div id="heading_calculator">Калькулятор Вилки</div>
+        <input type="number" id="odd1" placeholder="Введите коэффициент первого события">
+        <input type="number" id="odd2" placeholder="Введите коэффициент второго события">
+        <input type="number" id="stake" placeholder="Введите общую сумму ставки">
+        <button id="calculate_button" onclick="validateAndCalculate()">Рассчитать</button>
+        <p id="result"></p>
+    </div>
+
+    
+    <script>
+        function sanitizeInput(input) {
+            return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function validateAndCalculate() {
+            let odd1 = sanitizeInput(document.getElementById('odd1').value);
+            let odd2 = sanitizeInput(document.getElementById('odd2').value);
+            let stake = sanitizeInput(document.getElementById('stake').value);
+            let errorMessage = "";
+
+            if (!odd1) {
+                errorMessage += "Заполните коэффициент на первое событие<br>";
+            }
+            if (!odd2) {
+                errorMessage += "Заполните коэффициент на второе событие<br>";
+            }
+            if (!stake) {
+                errorMessage += "Заполните сумму ставки<br>";
+            }
+
+            if (errorMessage) {
+                document.getElementById('result').innerHTML = errorMessage;
+                return;
+            }
+
+            odd1 = parseFloat(odd1);
+            odd2 = parseFloat(odd2);
+            stake = parseFloat(stake);
+
+            if (isNaN(odd1) || isNaN(odd2) || isNaN(stake)) {
+                document.getElementById('result').innerHTML = "Не ломай";
+                return;
+            }
+
+            let probability1 = 1 / odd1;
+            let probability2 = 1 / odd2;
+            let totalProbability = probability1 + probability2;
+
+            let stake1 = stake * (probability1 / totalProbability);
+            let stake2 = stake * (probability2 / totalProbability);
+
+            let payout1 = stake1 * odd1;
+            let payout2 = stake2 * odd2;
+
+            let profit = payout1 - (stake1 + stake2);
+
+            document.getElementById('result').innerHTML = `
+                Ставка на исход 1: ${stake1.toFixed(2)}<br>
+                Ставка на исход 2: ${stake2.toFixed(2)}<br>
+                Возможная выплата: ${payout1.toFixed(2)}<br>
+                Чистая прибыль: ${profit.toFixed(2)}
+            `;
+        }
+    </script>
+</body>
+</html>
