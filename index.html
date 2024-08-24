@@ -7,7 +7,7 @@
     <title>Калькулятор Ставок</title>
 </head>
 <body>
-    <div id="jabi_logo_div"><img id="jabi_logo" src= "JABICOIN Vector Green.png"></div>
+    <div id="jabi_logo_div"><img id="jabi_logo" src="jabi_logo.png"></div>
     <div class="container">
         <div id="heading_calculator">Калькулятор Вилки</div>
         <input type="number" id="odd1" placeholder="Введите коэффициент первого события">
@@ -17,7 +17,6 @@
         <p id="result"></p>
     </div>
 
-    
     <script>
         function sanitizeInput(input) {
             return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -65,11 +64,15 @@
 
             let profit = payout1 - (stake1 + stake2);
 
+            // Округление до целых чисел
+            stake1 = Math.round(stake1);
+            stake2 = Math.round(stake2);
+            profit = Math.round(profit);
+
             document.getElementById('result').innerHTML = `
-                Ставка на первый исход: ${stake1.toFixed(2)}<br>
-                Ставка на второй исход: ${stake2.toFixed(2)}<br>
-                Возможная выплата: ${payout1.toFixed(2)}<br>
-                Чистая прибыль: ${profit.toFixed(2)}
+                Ставка на первый исход: ${stake1}<br>
+                Ставка на второй исход: ${stake2}<br>
+                Чистая прибыль: ${profit}
             `;
         }
     </script>
